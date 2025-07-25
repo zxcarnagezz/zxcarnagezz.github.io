@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максим — Программист</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            color: #0af;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.3);
+            text-align: center;
+            border: 1px solid #0af;
+            position: relative;
+        }
+        h1 {
+            color: #0af;
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+        .info {
+            margin: 20px 0;
+            text-align: left;
+            padding: 0 20px;
+        }
+        .info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .tg-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #0af;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .tg-link:hover {
+            background: #09f;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+        .tg-channel {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #0af;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .tg-channel:hover {
+            background: #09f;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+        .typing-effect {
+            display: inline-block;
+            position: relative;
+        }
+        .typing-effect::after {
+            content: "|";
+            animation: blink 1s infinite;
+            margin-left: 3px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .matrix-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .links-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Эффект "матрицы" на фоне -->
+    <canvas id="matrix" class="matrix-effect"></canvas>
+
+    <div class="container">
+        <h1><span class="typing-effect">Максим</span></h1>
+        <div class="info">
+            <p><strong>Возраст:</strong> <span class="typing-effect">14 лет</span></p>
+            <p><strong>Город:</strong> <span class="typing-effect">Самара</span></p>
+            <p><strong>Род занятий:</strong> <span class="typing-effect">Программист</span></p>
+            <p><strong>Навыки:</strong> <span class="typing-effect">Python, HTML, CSS</span></p>
+            <p><strong>Стаж:</strong> <span class="typing-effect">21 день (крутой)</span></p>
+            <p><strong>Позиция:</strong> <span class="typing-effect">Мирный </span></p>
+        </div>
+        <div class="links-container">
+            <a href="https://t.me/zxcarnagezz" class="tg-link">Написать в Telegram</a>
+            <a href="https://t.me/PYgramHouse" class="tg-channel">Мой Telegram-канал</a>
+        </div>
+        <p>@zxcarnagezz (основной) / @Bestanov (дефа)</p>
+        <p>Канал: @PYgramHouse</p>
+    </div>
+
+    <script>
+        // Эффект "матрицы" (синие символы, падающие вниз)
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = '01';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0af';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+
+        // Анимация появления текста
+        document.querySelectorAll('.typing-effect').forEach((el) => {
+            const text = el.textContent;
+            el.textContent = '';
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html> <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максим — Программист</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            color: #0af;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.3);
+            text-align: center;
+            border: 1px solid #0af;
+            position: relative;
+        }
+        h1 {
+            color: #0af;
+            text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+        }
+        .info {
+            margin: 20px 0;
+            text-align: left;
+            padding: 0 20px;
+        }
+        .info p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .tg-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #0af;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .tg-link:hover {
+            background: #09f;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+        .tg-channel {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #0af;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .tg-channel:hover {
+            background: #09f;
+            box-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+        .typing-effect {
+            display: inline-block;
+            position: relative;
+        }
+        .typing-effect::after {
+            content: "|";
+            animation: blink 1s infinite;
+            margin-left: 3px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .matrix-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        .links-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Эффект "матрицы" на фоне -->
+    <canvas id="matrix" class="matrix-effect"></canvas>
+
+    <div class="container">
+        <h1><span class="typing-effect">Максим</span></h1>
+        <div class="info">
+            <p><strong>Возраст:</strong> <span class="typing-effect">14 лет</span></p>
+            <p><strong>Город:</strong> <span class="typing-effect">Самара</span></p>
+            <p><strong>Род занятий:</strong> <span class="typing-effect">Программист</span></p>
+            <p><strong>Навыки:</strong> <span class="typing-effect">Python, HTML, CSS</span></p>
+            <p><strong>Стаж:</strong> <span class="typing-effect">21 день (крутой)</span></p>
+            <p><strong>Позиция:</strong> <span class="typing-effect">Мирный </span></p>
+        </div>
+        <div class="links-container">
+            <a href="https://t.me/zxcarnagezz" class="tg-link">Написать в Telegram</a>
+            <a href="https://t.me/PYgramHouse" class="tg-channel">Мой Telegram-канал</a>
+        </div>
+        <p>@zxcarnagezz (основной) / @Bestanov (дефа)</p>
+        <p>Канал: @PYgramHouse</p>
+    </div>
+
+    <script>
+        // Эффект "матрицы" (синие символы, падающие вниз)
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = '01';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0af';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+
+        // Анимация появления текста
+        document.querySelectorAll('.typing-effect').forEach((el) => {
+            const text = el.textContent;
+            el.textContent = '';
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    el.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 100);
+        });
+    </script>
+</body>
+              </html>
